@@ -1,0 +1,87 @@
+body, p {
+    margin: 0;
+    padding: 0;
+}
+
+body {
+    font-family: 'Architects Daughter', cursive;
+    background-image: url("../img/madeira-480.jpg");
+}
+
+.agenda, .input-control {
+    max-width: 660px;
+    width: 90%;
+    margin: 20px auto;
+    box-sizing: border-box;
+}
+
+.agenda {
+    min-height: 70vh;
+    padding: 10px;           
+    background-color: #fff;
+    box-shadow: -19px -5px 10px -8px #272727;
+}
+
+p {
+    position: relative;
+    margin: 10px 0px;
+    font-size: 18px;
+    border-bottom: 1px solid rgb(245, 151, 151);
+}
+
+.btn[data-show="true"] {
+    display: inline-block;
+}
+
+.btn {
+    text-decoration: none;
+    margin: 0 10px;
+    display: none; 
+}
+
+.btn-delete {
+    color: red;
+}
+
+.btn-confirm {
+    color: green;
+}
+
+p:hover .btn, p:focus .btn {
+    display: inline-block;
+}
+
+#tarefa {
+    padding: 10px;
+    width: 67%;
+    border-radius: 5px;            
+    box-sizing: border-box;
+}
+
+#btnAdd {
+    width: 30%;
+    padding: 10px 15px;
+    border-radius: 5px;
+    background-color: #ebf392;
+    border: none;
+    outline: none;
+    box-sizing: border-box;
+}
+
+@media screen and (min-width: 480px) {
+    body {        
+        background-image: url("../img/madeira-700.jpg");
+    }
+}
+
+@media screen and (min-width: 700px) {
+    body {        
+        background-image: url("../img/madeira-1200.jpg");
+    }
+}
+
+@media screen and (min-width: 1200px) {
+    body {        
+        background-image: url("../img/madeira.jpg");
+    }
+}
