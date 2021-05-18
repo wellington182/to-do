@@ -7,16 +7,17 @@ btn.addEventListener( 'click', insert, false );
 list();
 
 function insert() {
-    let tarefa = document.getElementById( 'tarefa' );
-    tarefas = [];
+    let tarefa = document.getElementById( 'tarefa' ),
+    tarefas = load();
 
-    if ( localStorage.getItem( 'tarefas' ) ) {
-        tarefas = localStorage.getItem( 'tarefas' );
-        tarefas = JSON.parse( tarefas );
+    if ( tarefa.value == '' ) {
+        tarefa.focus();
+
+        return;
     }
 
     tarefas.push( { descricao: tarefa.value, confirma: false } );
-    localStorage.setItem( 'tarefas', JSON.stringify( tarefas) );
+    save( tarefas );
 
     tarefa.value = '';
     tarefa.focus();
@@ -34,7 +35,7 @@ function action( e ) {
 
     id = target.dataset.id;
 
-    if( ( innerWidth < 968 && lastTarget === id ) || ( innerWidth >= 968 ) ) {
+    if( ( innerWidth < 968 && lastTarget === id ) || ( innerWidth >= 968 ) ) {        
         if ( target.classList.contains( 'btn-delete' ) ) {
             remove( id );
         }
@@ -42,14 +43,20 @@ function action( e ) {
         if ( target.classList.contains( 'btn-confirm' ) ) {
             confirm( id );    
         }
+
+        id = null;
     }
     
     lastTarget = id;
 }
 
 function load() {
-    let tarefas = localStorage.getItem( 'tarefas' );
-    tarefas = JSON.parse( tarefas );
+    let tarefas = [];
+    
+    if ( localStorage.getItem( 'tarefas' ) ) {
+        tarefas = localStorage.getItem( 'tarefas' );
+        tarefas = JSON.parse( tarefas );
+    }
     
     return tarefas;
 }
@@ -68,7 +75,7 @@ function remove( id ) {
 }
 
 function confirm( id ) {
-    tarefas = load();  
+    let tarefas = load();  
         
     tarefas[ id ].confirma = true;
     save( tarefas );
@@ -87,7 +94,7 @@ function list() {
         tam = tarefas.length;
 
         for ( let i = 0; i < tam; i += 1 ) {
-                msg += '<p tableIndex="' + i + '">' + tarefas[i].descricao + '<a href="#" class="btn btn-confirm" data-show="' + tarefas[i].confirma +'" data-id="' + i + '">V</a><a href="#" class="btn btn-delete" data-id="' + i + '">X</a></p>';
+                msg += '<p tabindex="' + ( i + 3 ) + '">' + tarefas[i].descricao + '<a href="#" class="btn btn-confirm" data-show="' + tarefas[i].confirma +'" data-id="' + i + '" tabindex="' + ( i + 4 ) + '">&#10003;</a><a href="#" class="btn btn-delete" data-id="' + i + '" tabindex="' + ( i + 5 )+ '">&#10007;</a></p>';
         }
     }
     
