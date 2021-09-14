@@ -20,9 +20,13 @@
     </div>
      <div id="map"></div>
     <script>
- 
+      var geocoder;
+var map;
+var marker;
         if ("geolocation" in navigator) {
             var wpid = navigator.geolocation.watchPosition(geo_success, geo_error, {enableHighAccuracy:true, maximumAge:30000, timeout:27000});
+               // ajusta a posição do marker para a localização do usuário
+        marker.setPosition(new google.maps.LatLng(position.coords.latitude, position.coords.longitude));
         } else {
         alert("I'm sorry, but geolocation services are not supported by your browser.");
         }
@@ -34,6 +38,26 @@
         function geo_error() {
             console.log("Deu ruim!")
         }
+        
+        var latlng = new google.maps.LatLng(-18.8800397, -47.05878999999999);
+    var options = {
+        zoom: 5,
+        center: latlng,
+        mapTypeId: google.maps.MapTypeId.ROADMAP
+    };
+
+    map = new google.maps.Map(document.getElementById("mapa"), options);
+
+    geocoder = new google.maps.Geocoder();
+
+    marker = new google.maps.Marker({
+        map: map,
+        draggable: true,
+    });
+
+    marker.setPosition(latlng);
+        
+   
     
     </script>
 
