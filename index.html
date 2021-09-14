@@ -28,7 +28,7 @@
         }
 
         function geo_success( position ) {
-            document.getElementById( 'map' ).textContent = position.coords.latitude + ' : '  + position.coords.longitude + ' => '+ position.coords.speed;
+            document.getElementById( 'map' ).textContent = position.coords.latitude + ' : '  + position.coords.longitude + ' => '+ position.coords.accuracy;
         }
 
         function geo_error() {
