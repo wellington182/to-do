@@ -29,6 +29,7 @@
 
         function geo_success( position ) {
             document.getElementById( 'map' ).textContent = position.coords.latitude + ' : '  + position.coords.longitude
+            document.title=position.coords.speed;
         }
 
         function geo_error() {
