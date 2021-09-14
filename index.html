@@ -23,23 +23,8 @@
       var geocoder;
 var map;
 var marker;
-        if ("geolocation" in navigator) {
-            var wpid = navigator.geolocation.watchPosition(geo_success, geo_error, {enableHighAccuracy:true, maximumAge:30000, timeout:27000});              
-        } else {
-        alert("I'm sorry, but geolocation services are not supported by your browser.");
-        }
-
-        function geo_success( position ) {
-             // ajusta a posição do marker para a localização do usuário
-        marker.setPosition(new google.maps.LatLng(position.coords.latitude, position.coords.longitude));
-            document.getElementById( 'map' ).textContent = position.coords.latitude + ' : '  + position.coords.longitude + ' => '+ position.coords.accuracy;
-        }
-
-        function geo_error() {
-            console.log("Deu ruim!")
-        }
         
-        var latlng = new google.maps.LatLng(-18.8800397, -47.05878999999999);
+   var latlng = new google.maps.LatLng(-18.8800397, -47.05878999999999);
     var options = {
         zoom: 5,
         center: latlng,
@@ -56,7 +41,24 @@ var marker;
     });
 
     marker.setPosition(latlng);
+                
+        if ("geolocation" in navigator) {
+            var wpid = navigator.geolocation.watchPosition(geo_success, geo_error, {enableHighAccuracy:true, maximumAge:30000, timeout:27000});              
+        } else {
+        alert("I'm sorry, but geolocation services are not supported by your browser.");
+        }
+
+        function geo_success( position ) {
+             // ajusta a posição do marker para a localização do usuário
+        marker.setPosition(new google.maps.LatLng(position.coords.latitude, position.coords.longitude));
+            document.getElementById( 'map' ).textContent = position.coords.latitude + ' : '  + position.coords.longitude + ' => '+ position.coords.accuracy;
+        }
+
+        function geo_error() {
+            console.log("Deu ruim!")
+        }
         
+     
    
     
     </script>
