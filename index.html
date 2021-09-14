@@ -24,14 +24,14 @@
 var map;
 var marker;
         if ("geolocation" in navigator) {
-            var wpid = navigator.geolocation.watchPosition(geo_success, geo_error, {enableHighAccuracy:true, maximumAge:30000, timeout:27000});
-               // ajusta a posição do marker para a localização do usuário
-        marker.setPosition(new google.maps.LatLng(position.coords.latitude, position.coords.longitude));
+            var wpid = navigator.geolocation.watchPosition(geo_success, geo_error, {enableHighAccuracy:true, maximumAge:30000, timeout:27000});              
         } else {
         alert("I'm sorry, but geolocation services are not supported by your browser.");
         }
 
         function geo_success( position ) {
+             // ajusta a posição do marker para a localização do usuário
+        marker.setPosition(new google.maps.LatLng(position.coords.latitude, position.coords.longitude));
             document.getElementById( 'map' ).textContent = position.coords.latitude + ' : '  + position.coords.longitude + ' => '+ position.coords.accuracy;
         }
 
